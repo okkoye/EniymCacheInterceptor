@@ -11,9 +11,8 @@ namespace EniymCacheInterceptor
         /// <param name="cacheKey"></param>
         /// <param name="cacheValue"></param>
         /// <param name="cacheSeconds"></param>
-        /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        Task SetAsync<T>(string cacheKey, T cacheValue, int cacheSeconds);
+        Task SetAsync(string cacheKey, object cacheValue, int cacheSeconds);
 
         /// <summary>
         /// 删除缓存
@@ -29,7 +28,5 @@ namespace EniymCacheInterceptor
         /// <param name="type"></param>
         /// <returns></returns>
         Task<object> GetAsync(string cacheKey, Type type);
-
-        object Get(string cacheKey, Type type);
     }
 }

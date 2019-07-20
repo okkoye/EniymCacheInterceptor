@@ -6,8 +6,8 @@ namespace EniymCacheInterceptor
     public class EniymCacheGetOrCreateAttribute : EniymCacheInterceptorAttribute
     {
         /// <summary>
-        /// 缓存时间(单位秒)
+        /// 缓存时间(单位秒)，默认30秒
         /// </summary>
-        public int CacheSeconds { get; set; }
+        public int CacheSeconds { get; set; } = 30;
     }
 }

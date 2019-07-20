@@ -1,8 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using Enyim.Caching;
+using Newtonsoft.Json.Linq;
 
-namespace EniymCacheInterceptor
+namespace EniymCacheInterceptor.CacheProvider
 {
     /// <summary>
     /// Memcached 缓存实现
@@ -17,7 +18,7 @@ namespace EniymCacheInterceptor
         }
 
 
-        public async Task SetAsync<T>(string cacheKey, T cacheValue, int cacheSeconds)
+        public async Task SetAsync(string cacheKey, object cacheValue, int cacheSeconds)
         {
             await _cache.AddAsync(cacheKey, cacheValue, cacheSeconds);
         }
@@ -29,15 +30,12 @@ namespace EniymCacheInterceptor
 
         public async Task<object> GetAsync(string cacheKey, Type type)
         {
-            var result = await Task.FromResult(_cache.Get(cacheKey));
-            if (result != null)
-                return result;
-            return null;
-        }
+            if (!(await Task.FromResult(_cache.Get(cacheKey)) is JObject result))
+            {
+                return null;
+            }
 
-        public object Get(string cacheKey, Type type)
-        {
-            return _cache.Get(cacheKey);
+            return result.ToObject(type);
         }
     }
 }

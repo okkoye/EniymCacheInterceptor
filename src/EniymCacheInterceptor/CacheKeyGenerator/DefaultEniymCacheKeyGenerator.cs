@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using AspectCore.DynamicProxy;
-using Newtonsoft.Json.Linq;
 
-namespace EniymCacheInterceptor
+namespace EniymCacheInterceptor.CacheKeyGenerator
 {
+    /// <summary>
+    /// 默认缓存键生成
+    /// </summary>
     public class DefaultEniymCacheKeyGenerator : IEniymCacheKeyGenerator
     {
         public string GetCacheKey(AspectContext context, string cacheKeyTemplate)
@@ -44,7 +45,7 @@ namespace EniymCacheInterceptor
                             throw new Exception($"can not found parameter '{parameterName}'");
                         }
 
-                        var ob = JObject.FromObject(objetValue);
+                        var ob = FastConvertHelper.ToDictionary(objetValue);
                         if (!ob.TryGetValue(fieldName, out var tokenValue))
                         {
                             throw new Exception($"can not fount field {fieldName}");
