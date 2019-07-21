@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 namespace EniymCacheInterceptor
 {
     /// <summary>
-    /// 对象转换成字典
+    /// 对象转字典类型
     /// </summary>
     public class FastConvertHelper
     {
@@ -33,7 +33,7 @@ namespace EniymCacheInterceptor
         private static Func<object, Dictionary<string, object>> CreateDictionaryGenerator(Type type)
         {
             var dm = new DynamicMethod($"Dictionary{Guid.NewGuid()}", typeof(Dictionary<string, object>),
-                new[] {typeof(object)}, type, true);
+                new[] { typeof(object) }, type, true);
             ILGenerator il = dm.GetILGenerator();
             il.DeclareLocal(typeof(Dictionary<string, object>));
             il.Emit(OpCodes.Nop);
@@ -60,7 +60,7 @@ namespace EniymCacheInterceptor
 
             il.Emit(OpCodes.Ldloc_0);
             il.Emit(OpCodes.Ret);
-            return (Func<object, Dictionary<string, object>>) dm.CreateDelegate(
+            return (Func<object, Dictionary<string, object>>)dm.CreateDelegate(
                 typeof(Func<object, Dictionary<string, object>>));
         }
     }

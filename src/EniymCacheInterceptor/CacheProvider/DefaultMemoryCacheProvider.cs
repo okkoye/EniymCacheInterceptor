@@ -4,6 +4,9 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace EniymCacheInterceptor.CacheProvider
 {
+    /// <summary>
+    /// Memory ª∫¥Ê µœ÷
+    /// </summary>
     public class DefaultMemoryCacheProvider : IEniymCacheProvider
     {
         private readonly IMemoryCache _cache;

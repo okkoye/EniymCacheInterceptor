@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 namespace EniymCacheInterceptor
 {
     /// <summary>
-    /// 自定义缓存拦截器
+    /// EniymCache 拦截器
     /// </summary>
     public class EniymCacheInterceptor : AbstractInterceptor
     {
@@ -68,7 +68,7 @@ namespace EniymCacheInterceptor
                             .GetOrAdd(returnType,
                                 t => typeof(Task).GetMethods()
                                     .First(p => p.Name == "FromResult" && p.ContainsGenericParameters)
-                                    .MakeGenericMethod(returnType)).Invoke(null, new object[] {cacheValue})
+                                    .MakeGenericMethod(returnType)).Invoke(null, new object[] { cacheValue })
                         : cacheValue;
                 }
                 else

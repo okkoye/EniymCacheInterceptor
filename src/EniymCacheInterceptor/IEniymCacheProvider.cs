@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 
 namespace EniymCacheInterceptor
 {
+    /// <summary>
+    /// EniymCacheProvider
+    /// </summary>
     public interface IEniymCacheProvider
     {
         /// <summary>

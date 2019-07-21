@@ -34,9 +34,9 @@ namespace EniymCacheInterceptor.CacheKeyGenerator
 
                 foreach (var placeholder in placeholderList)
                 {
-                    if (placeholder.Contains(":"))
+                    if (placeholder.Contains("."))
                     {
-                        var temp = placeholder.Split(':');
+                        var temp = placeholder.Split('.');
                         var parameterName = temp[0];
                         var fieldName = temp[1];
 

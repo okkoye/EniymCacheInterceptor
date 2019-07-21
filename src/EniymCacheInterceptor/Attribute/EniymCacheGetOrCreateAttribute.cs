@@ -2,6 +2,9 @@ using System;
 
 namespace EniymCacheInterceptor
 {
+    /// <summary>
+    /// 缓存特性：先去缓存中取数据，没有再去执行查询方法
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method, Inherited = true)]
     public class EniymCacheGetOrCreateAttribute : EniymCacheInterceptorAttribute
     {
