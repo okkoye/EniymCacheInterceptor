@@ -31,7 +31,7 @@ namespace EniymCacheInterceptor.Demo.Web
             services.AddEnyimMemcached();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.TryAddSingleton<IEniymCacheProvider, DefaultMemcachedCacheProvider>();
+            services.TryAddSingleton<IEniymCacheProvider, DefaultMemoryCacheProvider>();
             services.TryAddSingleton<IEniymCacheKeyGenerator, DefaultEniymCacheKeyGenerator>();
 
             bool All(MethodInfo x) =>

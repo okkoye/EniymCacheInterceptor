@@ -49,6 +49,7 @@ namespace EniymCacheInterceptor
                     : context.ServiceMethod.ReturnType;
 
                 var cacheKey = KeyGenerator.GetCacheKey(context, attribute.Template);
+                Logger.LogInformation($"KeyGenerator.GetCacheKey: '{cacheKey}'");
 
                 object cacheValue = null;
                 try

@@ -12,9 +12,9 @@ namespace EniymCacheInterceptor.Demo.Web.Services
             return await Task.FromResult(person);
         }
 
-        public async Task<string> GetUserName(int id)
+        public async Task<string> GetUserName(Person p)
         {
-            return await Task.FromResult<string>($"tim_{id}_{Guid.NewGuid()}");
+            return await Task.FromResult<string>($"tim_{p.Id}_{Guid.NewGuid()}");
         }
     }
 }

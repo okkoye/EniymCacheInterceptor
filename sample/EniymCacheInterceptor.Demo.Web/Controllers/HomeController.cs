@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using EniymCacheInterceptor.Demo.Web.Models;
 using EniymCacheInterceptor.Demo.Web.Services;
@@ -23,7 +24,18 @@ namespace EniymCacheInterceptor.Demo.Web.Controllers
 
         public async Task<IActionResult> Privacy()
         {
-            var testStr = await _testService.GetUserName(11);
+            var person = new Person()
+            {
+                Id = 100,
+                Name = "HelloTim",
+                DateAdded = DateTime.Now,
+                Address = new Address()
+                {
+                    Id = 101,
+                    Name = "浙江"
+                }
+            };
+            var testStr = await _testService.GetUserName(person);
             return Ok(testStr);
         }
 
