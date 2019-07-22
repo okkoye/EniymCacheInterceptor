@@ -28,17 +28,11 @@ namespace EniymCacheInterceptor.Demo.Web
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ITestService, TestService>();
-            services.AddEnyimMemcached();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddMemoryCache();
             services.TryAddSingleton<IEniymCacheProvider, DefaultMemoryCacheProvider>();
             services.TryAddSingleton<IEniymCacheKeyGenerator, DefaultEniymCacheKeyGenerator>();
-
-            bool All(MethodInfo x) =>
-                x.CustomAttributes.Any(data => typeof(EniymCacheInterceptorAttribute)
-                    .IsAssignableFrom(data.AttributeType));
-
-            services.ConfigureDynamicProxy(config => { config.Interceptors.AddTyped<EniymCacheInterceptor>(All); });
+            services.ConfigureDynamicProxy(config => { config.Interceptors.AddTyped<EniymCacheInterceptor>(); });
 
             return services.BuildAspectInjectorProvider();
         }
@@ -66,7 +60,6 @@ namespace EniymCacheInterceptor.Demo.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            app.UseEnyimMemcached();
         }
     }
 }

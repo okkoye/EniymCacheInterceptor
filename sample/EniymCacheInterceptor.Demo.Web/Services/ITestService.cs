@@ -9,7 +9,7 @@ namespace EniymCacheInterceptor.Demo.Web.Services
         Task<string> GetUserName(Person p);
         Task<string> GetUserNameWithMemoryCache(Person p);
 
-        [EniymCacheGetOrCreate(Template = "user_{p:Id}_address_{p:Address:Id}", CacheSeconds = 180)]
+        [EniymCacheGetOrCreate(Template = "user_address_{p:Address:Id}", CacheSeconds = 180)]
         Task<string> GetUserNameWithEniyCacheInterceptor(Person p);
     }
 }
