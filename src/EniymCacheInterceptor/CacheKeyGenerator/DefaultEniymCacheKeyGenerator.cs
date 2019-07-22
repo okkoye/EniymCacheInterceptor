@@ -29,9 +29,9 @@ namespace EniymCacheInterceptor.CacheKeyGenerator
                     if (!parameterDic.TryGetValue(rootParameterName, out objetValue))
                         throw new Exception($"can not found root parameter '{rootParameterName}'");
 
-                    for (int i = 1; i < temp.Length - 1; i++)
+                    for (int i = 1; i < temp.Length; i++)
                     {
-                        var ob = FastConvertHelper.ToDictionary(objetValue);
+                        var ob = ConvertHelper.ToDictionary(objetValue);
                         if (!ob.TryGetValue(temp[i], out objetValue))
                             throw new Exception($"can not fount parameter {temp[i]}");
                     }
@@ -60,7 +60,7 @@ namespace EniymCacheInterceptor.CacheKeyGenerator
         private List<string> GetPlaceholderList(string template)
         {
             var placeholderList = new List<string>();
-            var matchs = Regex.Matches(template, @"\{\w*\:?\w*\}", RegexOptions.None);
+            var matchs = Regex.Matches(template, @"\{(.*)\}", RegexOptions.Compiled);
             foreach (Match match in matchs)
             {
                 if (match.Success)

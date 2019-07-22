@@ -5,8 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AspectCore.Core" Version="1.2.0"/>
-        <PackageReference Include="EnyimMemcachedCore" Version="2.3.0"/>
+        <PackageReference Include="AspectCore.Core" Version="1.2.0" />
+        <PackageReference Include="EnyimMemcachedCore" Version="2.3.0" />
     </ItemGroup>
 
 </Project>
