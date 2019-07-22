@@ -10,36 +10,37 @@ namespace EniymCacheInterceptor.Demo.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ITestService _testService;
-
+        private readonly Person person = new Person()
+        {
+            Id = 100,
+            Name = "HelloTim",
+            DateAdded = DateTime.Now,
+            Address = new Address()
+            {
+                Id = 101,
+                Name = "浙江"
+            }
+        };
         public HomeController(ITestService testService)
         {
             _testService = testService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Test1()
         {
-            var person = await _testService.GetUser(11111);
-            return View(person);
+            return Ok(await _testService.GetUserName(person));
         }
 
-        public async Task<IActionResult> Privacy()
+        public async Task<IActionResult> Test2()
         {
-            var person = new Person()
-            {
-                Id = 100,
-                Name = "HelloTim",
-                DateAdded = DateTime.Now,
-                Address = new Address()
-                {
-                    Id = 101,
-                    Name = "浙江"
-                }
-            };
-            var testStr = await _testService.GetUserName(person);
-            return Ok(testStr);
+            return Ok(await _testService.GetUserNameWithMemoryCache(person));
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public async Task<IActionResult> Test3()
+        {
+            return Ok(await _testService.GetUserNameWithEniyCacheInterceptor(person));
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
