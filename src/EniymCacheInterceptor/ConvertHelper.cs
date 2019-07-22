@@ -9,14 +9,14 @@ namespace EniymCacheInterceptor
     /// <summary>
     /// 对象转字典类型
     /// </summary>
-    public class FastConvertHelper
+    public class ConvertHelper
     {
         private static readonly ConcurrentDictionary<Type, Func<object, Dictionary<string, object>>> DictionaryCache
             =
             new ConcurrentDictionary<Type, Func<object, Dictionary<string, object>>>();
 
 
-        public static Dictionary<string, object> ToDictionary(object obj)
+        public static Dictionary<string, object> ToDictionary( object obj)
         {
             var type = obj.GetType();
             if (!DictionaryCache.TryGetValue(type, out Func<object, Dictionary<string, object>> getter))
