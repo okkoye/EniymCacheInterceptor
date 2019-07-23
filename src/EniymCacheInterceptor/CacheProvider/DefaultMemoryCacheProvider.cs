@@ -5,7 +5,7 @@ using Microsoft.Extensions.Caching.Memory;
 namespace EniymCacheInterceptor.CacheProvider
 {
     /// <summary>
-    /// Memory »º´æÊµÏÖ
+    /// Memory å®žçŽ°
     /// </summary>
     public class DefaultMemoryCacheProvider : IEniymCacheProvider
     {

@@ -3,7 +3,7 @@ using System;
 namespace EniymCacheInterceptor
 {
     /// <summary>
-    /// 默认缓存特性
+    /// 默认缓存抽象
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, Inherited = true)]
     public class EniymCacheInterceptorAttribute : Attribute
